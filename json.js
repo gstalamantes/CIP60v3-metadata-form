@@ -122,16 +122,13 @@ document.addEventListener('DOMContentLoaded', function() {
         artistEntries.forEach((entry) => {
             const name = entry.querySelector('input[name="artistName[]"]').value;
             if (name) {
+                const artistData = { name: name };
                 const isni = entry.querySelector('input[name="artistIsni[]"]').value;
-                const linkNames = entry.querySelectorAll('input[name="artistLinkName[]"]');
-                const linkUrls = entry.querySelectorAll('input[name="artistLinkUrl[]"]');
-                
-                const artistData = {};
-                if (isni) {
-                    artistData.isni = isni;
-                }
+                if (isni) artistData.isni = isni;
                 
                 const links = {};
+                const linkNames = entry.querySelectorAll('input[name="artistLinkName[]"]');
+                const linkUrls = entry.querySelectorAll('input[name="artistLinkUrl[]"]');
                 for (let i = 0; i < linkNames.length; i++) {
                     if (linkNames[i].value && linkUrls[i].value) {
                         links[linkNames[i].value] = linkUrls[i].value;
@@ -141,13 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     artistData.links = links;
                 }
                 
-                if (Object.keys(artistData).length > 0) {
-                    const artistEntry = {};
-                    artistEntry[name] = artistData;
-                    artists.push(artistEntry);
-                } else {
-                    artists.push(name);
-                }
+                artists.push(artistData);
             }
         });
         
@@ -162,16 +153,13 @@ document.addEventListener('DOMContentLoaded', function() {
         artistEntries.forEach((entry) => {
             const name = entry.querySelector('input[name="featuredArtistName[]"]').value;
             if (name) {
+                const artistData = { name: name };
                 const isni = entry.querySelector('input[name="featuredArtistIsni[]"]').value;
-                const linkNames = entry.querySelectorAll('input[name="featuredArtistLinkName[]"]');
-                const linkUrls = entry.querySelectorAll('input[name="featuredArtistLinkUrl[]"]');
-                
-                const artistData = {};
-                if (isni) {
-                    artistData.isni = isni;
-                }
+                if (isni) artistData.isni = isni;
                 
                 const links = {};
+                const linkNames = entry.querySelectorAll('input[name="featuredArtistLinkName[]"]');
+                const linkUrls = entry.querySelectorAll('input[name="featuredArtistLinkUrl[]"]');
                 for (let i = 0; i < linkNames.length; i++) {
                     if (linkNames[i].value && linkUrls[i].value) {
                         links[linkNames[i].value] = linkUrls[i].value;
@@ -181,13 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     artistData.links = links;
                 }
                 
-                if (Object.keys(artistData).length > 0) {
-                    const artistEntry = {};
-                    artistEntry[name] = artistData;
-                    featuredArtists.push(artistEntry);
-                } else {
-                    featuredArtists.push(name);
-                }
+                featuredArtists.push(artistData);
             }
         });
         
@@ -202,20 +184,14 @@ document.addEventListener('DOMContentLoaded', function() {
         authorEntries.forEach((entry) => {
             const name = entry.querySelector('input[name="authorName[]"]').value;
             if (name) {
+                const authorData = { name: name };
                 const ipi = entry.querySelector('input[name="authorIpi[]"]').value;
                 const share = entry.querySelector('input[name="authorShare[]"]').value;
                 
-                const authorData = {};
                 if (ipi) authorData.ipi = ipi;
                 if (share) authorData.share = share;
                 
-                if (Object.keys(authorData).length > 0) {
-                    const authorEntry = {};
-                    authorEntry[name] = authorData;
-                    authors.push(authorEntry);
-                } else {
-                    authors.push(name);
-                }
+                authors.push(authorData);
             }
         });
         
@@ -230,26 +206,19 @@ document.addEventListener('DOMContentLoaded', function() {
         artistEntries.forEach((entry) => {
             const name = entry.querySelector('input[name="contributingArtistName[]"]').value;
             if (name) {
+                const artistData = { name: name };
                 const ipn = entry.querySelector('input[name="contributingArtistIpn[]"]').value;
                 const role = entry.querySelector('input[name="contributingArtistRole[]"]').value;
                 
-                const artistData = {};
                 if (ipn) artistData.ipn = ipn;
                 if (role) artistData.role = role.split(',').map(r => r.trim());
                 
-                if (Object.keys(artistData).length > 0) {
-                    const artistEntry = {};
-                    artistEntry[name] = artistData;
-                    artists.push(artistEntry);
-                } else {
-                    artists.push(name);
-                }
+                artists.push(artistData);
             }
         });
         
         return artists.length > 0 ? artists : null;
     }
-
     function formatDuration(duration) {
         if (!duration) return null;
         const [minutes, seconds] = duration.split(':');
