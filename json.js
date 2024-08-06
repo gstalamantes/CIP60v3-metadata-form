@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                     artists: getArtists(),
                                     featured_artists: getFeaturedArtists(),
                                     authors: getAuthors(),
-                                    mastering_engineer: formData.get('masteringEngineer'),
+                                    mastering_engineer: formData.get('masterEngineer'),
                                     mix_engineer: formData.get('mixEngineer'),
                                     recording_engineer: formData.get('recordingEngineer'),
                                     producer: formData.get('producer'),
