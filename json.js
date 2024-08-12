@@ -99,6 +99,8 @@ document.addEventListener('DOMContentLoaded', function() {
                                     contributing_artists: getContributingArtists(),
                                     genres: formData.get('genres') ? formData.get('genres').split(',').map(g => g.trim()) : null,
                                     mood: formData.get('mood'),
+                                    explicit: formData.get("explicit"),
+                                    ai_generated: formData.get("ai_generated"),
                                     copyright: {
                                         master: "℗ " + formData.get('copyrightMaster'),
                                         composition: "© " + formData.get('copyrightComposition')
@@ -111,6 +113,15 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
     
+        if (formData.get('explicit') === 'on') {
+            jsonData['721'][formData.get('policyId')][formData.get('assetName')].files[0].song.explicit = true;
+        }
+        if (formData.get('ai_generated') === 'on') {
+            jsonData['721'][formData.get('policyId')][formData.get('assetName')].files[0].song.ai_generated = true;
+        }
+    
+ 
+
         return jsonData;
     }
     
