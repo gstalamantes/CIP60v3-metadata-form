@@ -14,15 +14,42 @@
        margin: 2px, auto;
         align-self: space-between;
     }
+    h1, h2, h3{
+        color: yellow;
+       margin-bottom: 5px
+    }
+    hr{
+        color: white;
+        background-color: #ddd;
+        height: 2px;
+        width: 70%
+    }
+
+    h2{
+        font-size: normal;
+        text-shadow: 1px 0px #2c77ad;
+    }
+    title{
+        padding:0;
+        margin-bottom: 5px
+    }
+    h4{
+        font-size:smaller;
+        padding: 0;
+        margin: 0
+    }
     #releaseDate, #publicationDate, #songDuration{
         width:fit-content
     }
     .linkURL{
         margin-left: 5px;
     }
-        label { display: block; margin-bottom: 5px}
+    #addAuthor{
+        margin-bottom: 20px
+    }
+        label { display: block; margin-bottom: 5px; color: aqua}
         input{padding:5px; width:85%; margin: 2px auto; background-color: bisque; border-radius: 10px; text-align:center}
-        button { padding: 10px; margin: 2px 0; background-color: #1d0ec8; color: white; border: none; cursor: pointer; text-align: center; }
+        button { padding: 10px; margin: 2px 0 ; background-color: #1d0ec8; color: white; border: outset 2px silver; cursor: pointer; text-align: center; }
         .dynamic-field { border: 1px solid #ddd; padding: 10px; margin-bottom: 10px; }
     </style>
 </head>
@@ -30,6 +57,8 @@
     <h1>Music Metadata Form</h1>
     <h4>* Denotes a required field</h4>
     <form id="musicMetadataForm">
+
+        <h2>Token Info</h2>
         <div class="form-group">
             <label for="policyId">*Policy ID:</label>
             <input type="text" id="policyId" name="policyId" required>
@@ -78,6 +107,9 @@
             <label for="releaseDate">Release Date:</label>
             <input type="date" id="releaseDate" name="releaseDate" title="Date release is available for purchase/streaming.  May differ from Publication Date.">
         </div>
+<hr>
+        <h2>Song Details</h2>
+
         <div class="form-group">
             <label for="fileName">*Audio File Name:</label>
             <input type="text" id="fileName" name="fileName" required>
