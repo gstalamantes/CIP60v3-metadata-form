@@ -85,7 +85,11 @@ document.addEventListener('DOMContentLoaded', function() {
                                 song: {
                                     song_title: formData.get('songTitle'),
                                     set: formData.get("songSet"),
-                                    song_duration: formatDuration(formData.get('songDuration')),
+                                    song_duration: formatDuration(
+                                        formData.get('hours'),
+                                        formData.get('minutes'),
+                                        formData.get('seconds')
+                                    ),
                                     track_number: "1",
                                     artists: getArtists(),
                                     featured_artists: getFeaturedArtists(),
@@ -230,11 +234,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return artists.length > 0 ? artists : null;
     }
-    function formatDuration(duration) {
-        if (!duration) return null;
-        const [minutes, seconds] = duration.split(':');
-        return `PT${minutes}M${seconds}S`;
+    function formatDuration(hours, minutes, seconds) {
+        if (!hours && !minutes && !seconds) return null;
+        
+        let duration = 'PT';
+        if (hours && hours !== '0') duration += `${hours}H`;
+        if (minutes && minutes !== '0') duration += `${minutes}M`;
+        if (seconds && seconds !== '0') duration += `${seconds}S`;
+        
+        return duration === 'PT' ? null : duration;
     }
+
 
 
     function addEntry(containerId, entryClass) {
