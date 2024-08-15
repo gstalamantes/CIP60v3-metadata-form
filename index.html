@@ -23,6 +23,15 @@
         height: 2px;
         width: 70%
     }
+    #songDuration{
+        display:flex;
+        margin: auto
+    }
+#hours, #minutes, #seconds{
+    margin: 0 10px;
+    text-align:center
+
+}
 
     h2{
         font-size: normal;
@@ -115,7 +124,12 @@
         </div>
         <div class="form-group">
             <label for="mediaType">*Audio Media Type:</label>
-            <input type="text" id="mediaType" name="mediaType" placeholder="audio/mp3" title="Use MIME type."required>
+            <select name="mediaType" id="mediaType">
+                <option value="audio/mpeg">MP3</option>
+                <option value="audio/wav">WAV</option>
+                <option value="audio/flac">FLAC</option>
+                <option value="audio/ogg">OGG</option>
+                </select>
         </div>
         <div class="form-group">
             <label for="src">*Audio Source URL:</label>
@@ -125,9 +139,13 @@
             <label for="songTitle">*Song Title:</label>
             <input type="text" id="songTitle" name="songTitle" required>
         </div>
-        <div class="form-group">
-            <label for="songDuration">*Song Duration (MM:SS):</label>
-            <input type="text" id="songDuration" name="songDuration" pattern="[0-9]{2}:[0-9]{2}" placeholder="04:30" required>
+        <div class="form-group" >
+           <label for="songDuration">Song Duration:</label>
+           <div id="songDuration">
+            <input type="number" id="hours" name="hours" min="0" max="23" required>H
+            <input type="number" id="minutes" name="minutes" min="0" max="59" required>M
+            <input type="number" id="seconds" name="seconds" min="0" max="59" required>S
+        </div>
         </div>
         <div class="form-group">
             <label for="songSet">Song Set:</label>
